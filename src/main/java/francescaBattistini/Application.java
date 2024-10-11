@@ -57,21 +57,25 @@ public static void main(String[] args) {
     libriTrovatiPerTitolo.forEach(System.out::println);*/
     System.out.println("6.ricerca degli elemente attualmente in prestito dato un numero di tessera utente");
     System.out.println("Creazione utenti");
+
     Utente Silvia = new Utente("Silvia", "Marelli", LocalDate.of(1980, 12, 31));
     Utente Chiara = new Utente("Chiara", "Di Luca", LocalDate.of(1987, 11, 24));
 
-    utenteDao.save(Silvia);
-    utenteDao.save(Chiara);
-
+    //utenteDao.save(Silvia);
+    //utenteDao.save(Chiara);
+    System.out.println("Creazione Prestiti");
     Prestito prestitoLibro = new Prestito(Silvia, thewitcher3, LocalDate.now(), null);
     Prestito prestitoLibro2 = new Prestito(Chiara,thewitcher, LocalDate.now(), null);
     Prestito prestitoLibro3 = new Prestito(Silvia, thewitcher2, LocalDate.now().minusDays(30), LocalDate.now());
    Prestito prestitoRivista = new Prestito(Chiara, RollingStones2, LocalDate.now().minusDays(10), null);
-   prestitoDao.save( prestitoLibro);
-    prestitoDao.save(prestitoLibro2);
-    prestitoDao.save(prestitoLibro3);
-    prestitoDao.save(prestitoRivista);
+   //prestitoDao.save( prestitoLibro);
+   // prestitoDao.save(prestitoLibro2);
+    //prestitoDao.save(prestitoLibro3);
+    //prestitoDao.save(prestitoRivista);
 
     //7.ricerca di tutti i prestiti scaduti e non ancora restituiti
+    List<Prestito> trovaElementodallaTessera = prestitoDao.trovaTessera(253);
+    trovaElementodallaTessera.forEach(System.out::println);
+
 }
 }
