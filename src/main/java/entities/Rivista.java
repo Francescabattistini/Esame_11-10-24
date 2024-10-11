@@ -17,9 +17,7 @@ public class Rivista extends Catalogo {
         this.periodicità = periodicità;
     }
 
-    public Rivista() {
-
-    }
+    public Rivista() {}
 
     public PeriodicitàType getPeriodicità() {
         return periodicità;

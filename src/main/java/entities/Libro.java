@@ -10,9 +10,7 @@ public class Libro extends Catalogo {
     @Column(name = "genere")
     private String genere;
 
-    public Libro() {
-
-    }
+    public Libro() {}
 
     public Libro(long codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
         super(codiceISBN, titolo, annoPubblicazione, numeroPagine);

@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "book_type")
+@DiscriminatorColumn(name = "catalogo_type")
 public abstract class Catalogo {
     @Id
     protected long codiceISBN;
