@@ -11,7 +11,7 @@ public class NotFoundEx extends RuntimeException {
     }
 
     public NotFoundEx() {
-        super("Nessun prestito in attesa");
+        super(" Bene, non abbiamo nessun prestito in attesa");
     }
 
 }

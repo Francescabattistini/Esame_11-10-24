@@ -46,13 +46,20 @@ public static void main(String[] args) {
 
     System.out.println("2.Ricerca tramite codice isbn");
     //Catalogo IdLibro1 = catalogoDao.TrovaId(2300);
+
+
     System.out.println("3.ricerca anno pubicazione");
     List<Catalogo> libriTrovatiPerAnno = catalogoDao.trovaAnno(1992);
     libriTrovatiPerAnno.forEach(System.out::println);
+
+
     System.out.println("4. ricerca autore");
     List<Catalogo> libriTrovatiPerAutore = catalogoDao.trovaAutore("Andrzej Sapkowski");
     libriTrovatiPerAutore.forEach(System.out::println);
-     System.out.println("5.ricerca per titolo o una parte di esso");
+
+
+    System.out.println("5.ricerca per titolo o una parte di esso");
+
     List<Catalogo> libriTrovatiPerTitolo = catalogoDao.trovaTitolo("dest");
     libriTrovatiPerTitolo.forEach(System.out::println);
 
