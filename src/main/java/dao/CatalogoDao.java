@@ -22,18 +22,21 @@ public class CatalogoDao {
         transaction.commit();
         System.out.println("libro/rivista " + book.getTitolo() + " è stato salvato correttamente nel Catalogo");
     }
-    public Catalogo findByID(long id) {
+    public Catalogo TrovaId(long id) {
         Catalogo found = em.find(Catalogo.class, id);
         if (found == null) throw new NotFoundEx(id);
+
+        System.out.println("id trovato");
         return found;
     }
     public void delete(long id) {
-        Catalogo found = this.findByID(id);
+        Catalogo found = this.TrovaId(id);
         if (found == null) throw new NotFoundEx(id);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);
         transaction.commit();
+        System.out.println("elemento eliminato");
     }
     public List<Catalogo> trovaAnno (long year) {
         TypedQuery<Catalogo> query = em.createQuery(
