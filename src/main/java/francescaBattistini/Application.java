@@ -9,7 +9,7 @@ private static final EntityManagerFactory emf = Persistence.createEntityManagerF
 
 public static void main(String[] args) {
     EntityManager em = emf.createEntityManager();
-
+    System.out.println("hello a mammeta");
 
 
     }
