@@ -1,13 +1,16 @@
 package francescaBattistini;
 
 import dao.CatalogoDao;
-import entities.Catalogo;
-import entities.Libro;
-import entities.Rivista;
+import dao.PrestitoDao;
+import dao.UtenteDao;
+import entities.*;
 import enums.PeriodicitàType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class Application {
 private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("catalogobibliografico");
@@ -18,6 +21,8 @@ public static void main(String[] args) {
     // non mi funzionava il persistence(mi ero dimenticata il meta-inf XD)
     System.out.println("vari DAO");
     CatalogoDao catalogoDao = new CatalogoDao(em);
+    UtenteDao utenteDao = new UtenteDao(em);
+    PrestitoDao prestitoDao = new PrestitoDao(em);
             //--------0 SAVE---------//
     System.out.println("Prima parte Save");
     Libro thewitcher = new Libro(2300,"il guardiano degli innocenti",1993,400,"Andrzej Sapkowski", "fantasy");
@@ -35,14 +40,38 @@ public static void main(String[] args) {
  // --------ISBN----//
     System.out.println("seconda parte ISBN");
 
-   //1. elimino tramitte codice isbn
-    catalogoDao.delete(3557);
-    //2.Ricerca tramite codice isbn
-    Catalogo IdLibro1 = catalogoDao.TrovaId(2300);
-    //3.ricerca anno pubicazione
-    //4. ricerca autore
-    //5.ricerca per titolo o una parte di esso
-    //6.ricerca degli elemente attualmente in prestito dato un numero di tessera utente
+
+    System.out.println("1.elimino tramitte codice isbn");
+    //catalogoDao.delete(3557);
+
+    System.out.println("2.Ricerca tramite codice isbn");
+    //Catalogo IdLibro1 = catalogoDao.TrovaId(2300);
+ /*   System.out.println("3.ricerca anno pubicazione");
+    List<Catalogo> libriTrovatiPerAnno = catalogoDao.trovaAnno(1992);
+    libriTrovatiPerAnno.forEach(System.out::println);
+    System.out.println("4. ricerca autore");
+    List<Catalogo> libriTrovatiPerAutore = catalogoDao.trovaAutore("Andrzej Sapkowski");
+    libriTrovatiPerAutore.forEach(System.out::println);
+     System.out.println("5.ricerca per titolo o una parte di esso");
+    List<Catalogo> libriTrovatiPerTitolo = catalogoDao.trovaTitolo("dest");
+    libriTrovatiPerTitolo.forEach(System.out::println);*/
+    System.out.println("6.ricerca degli elemente attualmente in prestito dato un numero di tessera utente");
+    System.out.println("Creazione utenti");
+    Utente Silvia = new Utente("Silvia", "Marelli", LocalDate.of(1980, 12, 31));
+    Utente Chiara = new Utente("Chiara", "Di Luca", LocalDate.of(1987, 11, 24));
+
+    utenteDao.save(Silvia);
+    utenteDao.save(Chiara);
+
+    Prestito prestitoLibro = new Prestito(Silvia, thewitcher3, LocalDate.now(), null);
+    Prestito prestitoLibro2 = new Prestito(Chiara,thewitcher, LocalDate.now(), null);
+    Prestito prestitoLibro3 = new Prestito(Silvia, thewitcher2, LocalDate.now().minusDays(30), LocalDate.now());
+   Prestito prestitoRivista = new Prestito(Chiara, RollingStones2, LocalDate.now().minusDays(10), null);
+   prestitoDao.save( prestitoLibro);
+    prestitoDao.save(prestitoLibro2);
+    prestitoDao.save(prestitoLibro3);
+    prestitoDao.save(prestitoRivista);
+
     //7.ricerca di tutti i prestiti scaduti e non ancora restituiti
 }
 }

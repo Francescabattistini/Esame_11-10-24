@@ -40,7 +40,7 @@ public class CatalogoDao {
     }
     public List<Catalogo> trovaAnno (long year) {
         TypedQuery<Catalogo> query = em.createQuery(
-                "SELECT b FROM Book b WHERE b.annoPubblicazione=:year",
+                "SELECT b FROM Catalogo b WHERE b.annoPubblicazione=:year",
                 Catalogo.class);
         query.setParameter("year", year);
         if (query.getResultList().isEmpty()) {
@@ -51,7 +51,7 @@ public class CatalogoDao {
 
     public List<Catalogo> trovaTitolo(String title) {
         TypedQuery<Catalogo> query = em.createQuery(
-                "SELECT b FROM Book b WHERE b.titolo LIKE :title",
+                "SELECT b FROM Catalogo b WHERE b.titolo LIKE :title",
                 Catalogo.class);
         query.setParameter("title", "%" + title + "%");
         if (query.getResultList().isEmpty()) {
@@ -62,7 +62,7 @@ public class CatalogoDao {
 
     public List<Catalogo> trovaAutore(String autore) {
         TypedQuery<Catalogo> query = em.createQuery(
-                "SELECT b FROM Book b WHERE b.autore=:autore",
+                "SELECT b FROM Catalogo b WHERE b.autore=:autore",
                 Catalogo.class);
         query.setParameter("autore", autore);
         if (query.getResultList().isEmpty()) {
