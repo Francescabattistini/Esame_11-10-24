@@ -46,7 +46,7 @@ public static void main(String[] args) {
 
     System.out.println("2.Ricerca tramite codice isbn");
     //Catalogo IdLibro1 = catalogoDao.TrovaId(2300);
- /*   System.out.println("3.ricerca anno pubicazione");
+    System.out.println("3.ricerca anno pubicazione");
     List<Catalogo> libriTrovatiPerAnno = catalogoDao.trovaAnno(1992);
     libriTrovatiPerAnno.forEach(System.out::println);
     System.out.println("4. ricerca autore");
@@ -54,7 +54,8 @@ public static void main(String[] args) {
     libriTrovatiPerAutore.forEach(System.out::println);
      System.out.println("5.ricerca per titolo o una parte di esso");
     List<Catalogo> libriTrovatiPerTitolo = catalogoDao.trovaTitolo("dest");
-    libriTrovatiPerTitolo.forEach(System.out::println);*/
+    libriTrovatiPerTitolo.forEach(System.out::println);
+
     System.out.println("6.ricerca degli elemente attualmente in prestito dato un numero di tessera utente");
     System.out.println("Creazione utenti");
 
@@ -72,10 +73,11 @@ public static void main(String[] args) {
    // prestitoDao.save(prestitoLibro2);
     //prestitoDao.save(prestitoLibro3);
     //prestitoDao.save(prestitoRivista);
-
-    //7.ricerca di tutti i prestiti scaduti e non ancora restituiti
     List<Prestito> trovaElementodallaTessera = prestitoDao.trovaTessera(253);
     trovaElementodallaTessera.forEach(System.out::println);
 
+    System.out.println("7.ricerca di tutti i prestiti scaduti e non ancora restituiti");
+    List<Prestito> LibriMaiRestituiti= prestitoDao.PrestitiNONrestituiti();
+    LibriMaiRestituiti.forEach(System.out::println);
 }
 }
